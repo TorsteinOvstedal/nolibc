@@ -1,6 +1,12 @@
-Using C (gcc) on x64 GNU/Linux without the C Standard library.
+Using C on x64 GNU/Linux without the standard runtime / library.
 
-Tools
+**Tools**
 - gcc
 - nasm
 - gmake
+
+
+**Build**
+```
+make
+```
