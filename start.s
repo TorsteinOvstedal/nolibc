@@ -1,12 +1,15 @@
-; Entrypoint of the program.
-; - Prepares the runtime environment for C.
-; - calls main(argc, argv).
-; - Exits the process.
+;; Platform: x64, Linux (6.8.1)
+;;
+;; Entrypoint of the program.
+;; - Prepares the runtime environment for C.
+;; - calls main(argc, argv).
+;; - Exits the process.
 
 bits 64
 
 section .text
 extern main
+extern exit
 global _start
 
 _start:
@@ -24,7 +27,5 @@ _start:
   call main
 
   ; exit (linux).
-  mov edi, eax
-  mov eax, 0x3c
-  syscall
+  call exit
   hlt

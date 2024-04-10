@@ -1,5 +1,5 @@
 TARGET  := main
-OBJECTS := main.o
+OBJECTS := main.o sys.o
 INCLUDE := ./
 
 CC      := gcc
@@ -14,7 +14,9 @@ LDFLAGS := -nostdlib
 
 OBJECTS := start.o $(OBJECTS)
 OBJECTS := $(addprefix obj/,$(OBJECTS))
+
 INCLUDE := $(addprefix -I,$(INCLUDE))
+CFLAGS  += $(INCLUDE)
 
 $(TARGET): $(OBJECTS)
 	$(LD) -o $@ $(LDFLAGS) $^
