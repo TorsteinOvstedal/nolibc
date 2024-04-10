@@ -1,3 +1,4 @@
 # Build files
 main
 *.o
+obj/
