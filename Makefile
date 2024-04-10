@@ -2,13 +2,19 @@ TARGET  := main
 OBJECTS := main.o 
 INCLUDE := ./
 
-CC      := gcc
-CFLAGS  := -std=c99 -Wpedantic -Wall -Wextra
-
 # TODO: Directory for object files.
 
-LD      := gcc
+CC      := gcc
+CFLAGS  := -std=c99 -Wpedantic -Wall -Wextra
+CFLAGS  += -nostdinc
 
+AS      := nasm
+ASFLAGS := -f elf64
+
+LD      := gcc
+LDFLAGS := -nostdlib
+
+OBJECTS := start.o $(OBJECTS)
 INCLUDE := $(addprefix -I,$(INCLUDE))
 
 $(TARGET): $(OBJECTS)
@@ -16,6 +22,9 @@ $(TARGET): $(OBJECTS)
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) -o $@ $<
+
+%.o: %s.
+	$(AS) $(ASFLAGS) -o $@ $<
 
 .PHONY: clean
 
